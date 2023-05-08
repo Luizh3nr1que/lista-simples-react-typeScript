@@ -35,7 +35,7 @@ export function Home() {
   return (
     <div className="container">
       <header>
-        <h1>Lista de Presença</h1>
+        <h1>Lista</h1>
         <div>
           <strong>{user.name}</strong>
           <img src={user.avatar} />
