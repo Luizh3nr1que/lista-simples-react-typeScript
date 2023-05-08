@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import '../styles/Home.css';
 import { Card } from '../componets/card/card';
 
@@ -6,6 +6,7 @@ export function Home() {
   const [studentName, setStudentName] = useState();
   const [students, setStudents] = useState([]);
   const [user, setUser] = useState({ name: "", avatar: "" });
+
 
   function handleAddStudent() {
     const newStudent = {
@@ -20,6 +21,8 @@ export function Home() {
     setStudents(prevState => [...prevState, newStudent]);
   }
 
+
+
   useEffect(() => {
     fetch('https://api.github.com/users/Luizh3nr1que')
       .then(response => response.json())
@@ -31,7 +34,6 @@ export function Home() {
       })
   }, [])
 
-
   return (
     <div className="container">
       <header>
@@ -42,15 +44,30 @@ export function Home() {
         </div>
       </header>
 
+      <input type="text" placeholder="Digite o algo..." onChange={e => setStudentName(e.target.value)} />
 
-      <input type="text" placeholder="Digite o nome..." onChange={e => setStudentName(e.target.value)} />
+      <button className='btn' type="button" onClick={handleAddStudent} >Adicionar</button>
 
-      <button type="button" onClick={handleAddStudent} >Adicionar</button>
+
       {
         students.map(student => (
-          < Card key={student.time} name={student.name} time={student.time} />
+          <Card key={student.time} name={student.name} time={student.time}>
+
+          </Card>
         ))
       }
     </div >
   )
-} 
+}
+
+let docTitle = document.title;
+window.addEventListener('blur', () => {
+  document.title = 'Veja a sua lista'
+});
+window.addEventListener('focus', () => {
+  document.title = docTitle;
+});
+
+
+
+

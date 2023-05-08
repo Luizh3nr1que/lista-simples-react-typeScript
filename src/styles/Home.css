@@ -43,7 +43,19 @@
     color: black;
 }
 
-button {
+.clear-button {
+    background-color: transparent;
+    color: rgb(119, 119, 119);
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    bottom: 53px;
+    left: 21%;
+}
+
+.btn {
+    margin-top: 20px;
     background-color: #735bf2;
     padding: 20px;
     font-weight: bold;
@@ -56,6 +68,6 @@ button {
     transition: .2 all;
 }
 
-button:hover {
+.btn:hover {
     background-color: rgb(62, 30, 206);
 }
