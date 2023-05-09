@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../styles/Home.css';
-import { Card } from '../componets/card/card';
+import { Card, cardProps } from '../components/card/Card';
 
 export function Home() {
-  const [studentName, setStudentName] = useState();
-  const [students, setStudents] = useState([]);
+  const [studentName, setStudentName] = useState('');
+  const [students, setStudents] = useState<cardProps[]>([]);
   const [user, setUser] = useState({ name: "", avatar: "" });
 
 
@@ -21,7 +21,15 @@ export function Home() {
     setStudents(prevState => [...prevState, newStudent]);
   }
 
+  type apiResponse = {
+    name: string;
+    avatar_url: string;
+  }
 
+  type user = {
+    name: string;
+    avatar: string;
+  }
 
   useEffect(() => {
     fetch('https://api.github.com/users/Luizh3nr1que')
@@ -51,11 +59,10 @@ export function Home() {
 
       {
         students.map(student => (
-          <Card key={student.time} name={student.name} time={student.time}>
-
-          </Card>
+          <Card key={student.time} name={student.name} time={student.time} />
         ))
       }
+
     </div >
   )
 }
